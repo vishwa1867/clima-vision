@@ -54,10 +54,6 @@ Clima Vision is an advanced weather monitoring system designed to provide real-t
 - Add more advanced weather analytics tools.
 - Integrate additional AI models for broader functionality.
 
-## License
 
-This project is licensed under the MIT License. See the LICENSE file for more details.
-
----
 
 Stay ahead of the weather with Clima Vision—your reliable companion for real-time climate insights!
