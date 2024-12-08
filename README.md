@@ -1,3 +1,6 @@
+![Screenshot 2024-09-15 131850](https://github.com/user-attachments/assets/3d7c8b9e-61bf-4295-bd1d-944d5f3ff863)
+![Screenshot (2)](https://github.com/user-attachments/assets/58d0fc36-a835-4931-81cf-6e524e33526a)
+![Screenshot 2024-12-08 174950](https://github.com/user-attachments/assets/3ed961e2-7ba7-40c2-9917-2399e68c7657)
 # Clima Vision
 
 Clima Vision is an advanced weather monitoring system designed to provide real-time climate insights and live weather updates. This project leverages cutting-edge technology to offer users accurate predictions and a seamless experience.
