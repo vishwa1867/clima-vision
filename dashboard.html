@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="shortcut icon" href="cloudy (1).svg" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="style">
+    <link rel="stylesheet" href="dashboard.css">
+    <title>Dashboard</title>
+</head>
+<body>
+    <section class="header">
+        <div class="logo">
+            <i class="ri-menu-line icon icon-0 menu"></i>
+            <h2>Woxsen<span>University </span></h2><!-- add woxsen logo-->
+        </div> 
+        <div class="search--notification--profile">
+            <div class="notification--profile">
+            </div>
+        </div>
+    </section>  
+    <section class="main">
+        <div class="sidebar">
+            <ul class="sidebar--items">
+                <li>
+                    <a href="index.html">
+                        <span class="icon icon-2"><i class="ri-calendar-2-line"></i></span>
+                        
+                        <span class="sidebar--item">Home </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" id="active--link">
+                        <span class="icon icon-1"><i class="ri-layout-grid-line"></i></span>
+                        <span class="sidebar--item">Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="app.html">
+                        <span class="icon icon-3"><i class="ri-user-2-line"></i></span>
+                        <span class="sidebar--item" style="white-space: nowrap;">Live Weather</span>
+                    </a>
+                </li>
+            </ul>
+            <ul class="sidebar--bottom-items">
+                <li>
+                    <a href="#">
+                        <span class="icon icon-7"><i class="ri-settings-3-line"></i></span>
+                        <span class="sidebar--item">Settings</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon icon-8"><i class="ri-logout-box-r-line"></i></span>
+                        <span class="sidebar--item">Logout</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="main--content">
+            <div class="overview">
+                <div class="title">
+                    <h2 class="section--title">Weather Conditions</h2>
+                </div>
+                
+                <div class="cards">
+                    <div class="card card-1">
+                        <div class="card--data">
+                            <div class="card--content">
+                                <h5 class="card--title">Temperature - °C</h5>
+                                <h1 id="card1-value">152</h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card card-2">
+                        <div class="card--data">
+                            <div class="card--content">
+                                <h5 class="card--title">Humidity </h5>
+                                <h1 id="card2-value">1145</h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card card-3">
+                        <div class="card--data">
+                            <div class="card--content">
+                                <h5 class="card--title">Avg Wind Speed - m/s</h5>
+                                <h1 id="card3-value">102</h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card card-4">
+                        <div class="card--data">
+                            <div class="card--content">
+                                <h5 class="card--title">Absolute Pressure - mm Hg</h5>
+                                <h1 id="card4-value">15</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <script>
+                    // Function to generate random numbers within a given range
+                    function getRandomValue(min, max) {
+                        return Math.floor(Math.random() * (max - min + 1)) + min;
+                    }
+
+                    // Function to update card values every 7 seconds
+                    function updateCardValues() {
+                        document.getElementById('card1-value').textContent = getRandomValue(21, 31);  // Inside Temp
+                        document.getElementById('card2-value').textContent = getRandomValue(51, 64);  // Humidity
+                        document.getElementById('card3-value').textContent = getRandomValue(1, 12);   // Avg Wind Speed
+                        document.getElementById('card4-value').textContent = getRandomValue(700, 710); // Absolute Pressure
+                    }
+
+                    // Initial update
+                    updateCardValues();
+
+                    // Set interval to update every 7 seconds (7000 ms)
+                    setInterval(updateCardValues, 7000);
+                </script>
+            </div>
+            <div class = "analysis">
+                <iframe
+                    src="http://localhost:8501/"
+                    width="1000px"
+                    height="550px"
+                    frameborder="0"
+                ></iframe>
+            </div>
+            <div class = "records">
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>Temperature Records</title>
+                    <style>
+                        body {
+                            margin: 20px;
+                            font-family: Arial, sans-serif;
+                        }
+                        table {
+                            width: 100%;
+                            border-collapse: collapse;
+                        }
+                        table, th, td {
+                            border: 1px solid black;
+                        }
+                        th, td {
+                            padding: 8px;
+                            text-align: left;
+                        }
+                        th {
+                            background-color: #f2f2f2;
+                        }
+                        button {
+                            background-color: #E03F3F;
+                            color: white;
+                            border: none;
+                            padding: 10px 15px;
+                            border-radius: 5px; /* Rounded corners */
+                            margin-right: 5px;  /* Space between buttons */
+                            cursor: pointer;
+                        }
+                        button:hover {
+                            background-color: darkred; /* Darker red on hover */
+                        }
+                        .button-container {
+                            margin-bottom: 20px; /* Space below the buttons */
+                            margin-top: 20px; /* Space above the buttons */
+                        }
+                        .table-container {
+                            width: 100%; 
+                            overflow-x: auto; /* Enable horizontal scrolling */
+                            margin-top: 20px; /* Add space above the table */
+                        }
+                    </style>
+                </head>
+                <!-- <body>
+                    <h1>Temperature Records</h1>
+                    <div class="button-container">
+                        <button onclick="fetchRecords()">Load All Records</button>
+                        <button onclick="fetchLimitedRecords()">Load Limited Records</button>
+                        <input type="number" id="limit" placeholder="Number of records" min="1">
+                        <button onclick="fetchLatestRecord()">Load Latest Record</button>
+                    </div>
+                
+                    <div class="table-container">
+                        <table id="record-table">
+                            <thead>
+                                <tr id="table-header"></tr>
+                            </thead>
+                            <tbody id="record-body"></tbody>
+                        </table>
+                    </div>
+                
+                    <script>
+                        function fetchRecords() {
+                            fetch('http://127.0.0.1:5000/get-records')
+                                .then(response => response.json())
+                                .then(data => {
+                                    updateTable(data);
+                                })
+                                .catch(error => console.error('Error fetching records:', error));
+                        }
+                
+                        function fetchLimitedRecords() {
+                            const limit = document.getElementById('limit').value;
+                            fetch(`http://127.0.0.1:5000/get-records?limit=${limit}`)
+                                .then(response => response.json())
+                                .then(data => {
+                                    updateTable(data);
+                                })
+                                .catch(error => console.error('Error fetching limited records:', error));
+                        }
+                
+                        function fetchLatestRecord() {
+                            fetch('http://127.0.0.1:5000/get-latest-record')
+                                .then(response => response.json())
+                                .then(data => {
+                                    updateTable([data]);
+                                })
+                                .catch(error => console.error('Error fetching latest record:', error));
+                        }
+                
+                        function updateTable(data) {
+                            const tableHeader = document.getElementById('table-header');
+                            const tableBody = document.getElementById('record-body');
+                            
+                            tableHeader.innerHTML = '';  // Clear previous headers
+                            tableBody.innerHTML = '';  // Clear previous rows
+                
+                            if (data.length === 0) {
+                                tableBody.innerHTML = '<tr><td colspan="100%">No records found.</td></tr>';
+                                return;
+                            }
+                
+                            // Extract columns from the first record
+                            const columns = Object.keys(data[0]);
+                            // Create header row
+                            columns.forEach(col => {
+                                const th = document.createElement('th');
+                                th.textContent = col;
+                                tableHeader.appendChild(th);
+                            });
+                
+                            // Create rows
+                            data.forEach(record => {
+                                const tr = document.createElement('tr');
+                                columns.forEach(col => {
+                                    const td = document.createElement('td');
+                                    td.textContent = record[col];
+                                    tr.appendChild(td);
+                                });
+                                tableBody.appendChild(tr);
+                            });
+                        }
+                    </script>
+                </body> -->
+            </div>
+        </div>
+    </div>
+</section>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
