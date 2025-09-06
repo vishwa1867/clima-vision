@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<!--
+Template Name: Lalapeden
+Author: <a href="http://www.os-templates.com/">OS Templates</a>
+Author URI: http://www.os-templates.com/
+Licence: Free to use under our free template licence terms
+Licence URI: http://www.os-templates.com/template-terms
+-->
+<html lang="">
+
+<head>
+  <title>Weather Predictions - Home Page</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link href="static/layout.css" rel="stylesheet" type="text/css" media="all">
+  <link rel="shortcut icon" href="cloudy (1).svg" type="image/x-icon">
+  <style>
+    .card-container {
+      display: flex;
+      overflow-x: scroll;
+      /* Hide scroll bar */
+      white-space: nowrap;
+      padding: 10px;
+    }
+
+    .card {
+      flex: 0 0 auto;
+      width: 220px;
+      margin: 0 10px;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      text-align: center;
+      background-color: #f9f9f9;
+    }
+
+    .card h3 {
+      font-size: 1.2em;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      font-size: 1em;
+      margin: 5px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .card p span {
+      margin-left: auto;
+      /* Push values to the right */
+    }
+
+    .advisory-box {
+      text-align: center;
+      margin: 20px 0;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background-color: #E03F3F;
+      color: white;
+    }
+    .addon{
+      margin-bottom: 10px; 
+    }
+  </style>
+</head>
+
+<body id="top">
+  <div class="wrapper row1">
+    <header id="header" class="hoc clear">
+      <div id="logo" class="fl_left">
+        <h1>Climate predictions</h1>
+      </div>
+      <nav id="mainav" class="fl_right">
+        <ul class="clear">
+          <li class="active"><a href="home.html">Home</a></li>
+          <li><a class="drop" href="dashboard.html">Dashboard</a></li>
+          <li><a class="drop" href=" app.html">live weather </a></li>
+        </ul>
+      </nav>
+    </header>
+  </div>
+  <div class="wrapper bgded overlay"></div>
+  <div id="pageintro" class="hoc clear">
+    <article>
+      <p>Welcome to </p>
+      <h2 class="heading">Woxsen prediction model</h2>
+      <p>We are pleased to serve you, please continue to search through the data, you could want to use our great
+        features of working efficiently with you.</p>
+    </article>
+  </div>
+  </div>
+  <div class="wrapper row3">
+    <main class="hoc container clear">
+      <div class="sectiontitle"> <!--Include the model-->
+        <div class="card-container" id="cards">
+          <!-- Cards will be inserted here dynamically -->
+        </div>
+
+        <div class="advisory-box" id="advisory">
+          <!-- Advisory message will appear here -->
+          <h3 class = "addon">Advisory</h3>
+          <p id="advisory-message">-</p>
+        </div>
+      </div>
+      <div class="clear"></div>
+    </main>
+  </div>
+  <div class="wrapper bgded overlay" style="background-image:url('E:\lalapeden\images\demo\Designer.jpeg');">
+    <div class="hoc container clear">
+      <div class="flexslider testimonials">
+        <ul class="slides">
+          <li>
+            <article><img class="circle" src="" alt="">
+              <blockquote>THANK YOU FOR VISITING OUR WEBSITE</blockquote>
+              <ul class="nospace starating">
+                <li><i class="fa fa-star"></i></li>
+                <li><i class="fa fa-star"></i></li>
+                <li><i class="fa fa-star"></i></li>
+                <li><i class="fa fa-star"></i></li>
+                <li><i class="fa fa-star"></i></li>
+              </ul>
+              <h6 class="heading"># WOXSEN </h6>
+            </article>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- JAVASCRIPTS -->
+  <script src="static\jquery.min.js"></script>
+  <script src="static\jquery.backtotop.js"></script>
+  <script src="static\jquery.mobilemenu.js"></script>
+  <script src="static\jquery.flexslider-min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    const featureNames = ["Temperature", "Wind Direction", "Wind Speed", "Rainfall", "Solar Radiation"];
+
+    const windDirectionMapping = {
+      'N': 0,
+      'NNE': 22.5,
+      'NE': 45,
+      'ENE': 67.5,
+      'E': 90,
+      'ESE': 112.5,
+      'SE': 135,
+      'SSE': 157.5,
+      'S': 180,
+      'SSW': 202.5,
+      'SW': 225,
+      'WSW': 247.5,
+      'W': 270,
+      'WNW': 292.5,
+      'NW': 315,
+      'NNW': 337.5
+    };
+
+    // Function to get the closest wind direction
+    function getClosestDirection(degrees) {
+      const absDegrees = Math.abs(degrees);
+      const closestDirection = Object.keys(windDirectionMapping).reduce((prev, curr) => {
+        return Math.abs(windDirectionMapping[curr] - absDegrees) < Math.abs(windDirectionMapping[prev] - absDegrees) ? curr : prev;
+      });
+      return closestDirection;
+    }
+
+    // Create card elements dynamically
+    function createCards() {
+      const cardContainer = $("#cards");
+      cardContainer.empty();
+      for (let i = 0; i < 8; i++) {
+        const heading = (i === 0) ? "30 min" : `${(i + 1) * 30} min`;
+        const card = `<div class="card">
+                                <h3>${heading}</h3>
+                                <p><strong>${featureNames[0]}:</strong> <span id="card-value-${i}-0">-</span> °C</p>
+                                <p><strong>${featureNames[1]}:</strong> <span id="card-value-${i}-1">-</span></p>
+                                <p><strong>${featureNames[2]}:</strong> <span id="card-value-${i}-2">-</span> m/s</p>
+                                <p><strong>${featureNames[3]}:</strong> <span id="card-value-${i}-3">-</span> mm</p>
+                                <p><strong>${featureNames[4]}:</strong> <span id="card-value-${i}-4">-</span> W/m²</p>
+                              </div>`;
+        cardContainer.append(card);
+      }
+    }
+
+    // Fetch prediction from the server and update card values and advisory message
+    function fetchPrediction() {
+      $.get("/predict", function (data) {
+        const prediction = data.prediction;
+        const advisory = data.advisory;
+
+        if (prediction.length > 0) {
+          prediction.forEach((pred, i) => {
+            $(`#card-value-${i}-0`).text(Math.round(pred[0]));
+            $(`#card-value-${i}-1`).text(getClosestDirection(pred[1]));
+            $(`#card-value-${i}-2`).text(Math.round(pred[2]));
+            $(`#card-value-${i}-3`).text(Math.round(pred[3]));
+            $(`#card-value-${i}-4`).text(Math.round(pred[4]));
+          });
+        }
+
+        // Update advisory message
+        $("#advisory-message").text(advisory);
+      });
+    }
+
+    // Start fetching predictions immediately
+    createCards();
+    setInterval(fetchPrediction, 5000);  // Fetch new predictions every 5 seconds
+  </script>
+</body>
+
+</html>
